@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+.canvas {
+    text-align: center;
+    padding-top: 5rem;
+}
+
+table {
+    display: inline-block;
+    margin: 0 2rem;
+}
+
+table td {
+    background-color: rgba(83, 156, 199, 0.774);
+}
+
+table td:hover {
+    background-color: rgba(164, 203, 226, 0.966);
+    cursor: pointer;
+}
+
+.boat,
+.boat:hover {
+    background-color: rgba(219, 191, 32, 0.966);
+
+}
+
+.water,
+.water:hover {
+    background-color: rgba(37, 143, 204, 0.966);
+    cursor: auto;
+}
+
+.hit,
+.hit:hover {
+    background-color: rgba(185, 58, 35, 0.966);
+
+    cursor: auto;
+}
