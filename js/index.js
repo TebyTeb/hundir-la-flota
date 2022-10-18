@@ -139,14 +139,33 @@ getCoord = function (e) {
     let x = parseInt(cell.id.slice(1)) - 1
     let y = parseInt(cell.parentNode.id.slice(1)) - 1
     checkHit(enemyMap, cell, y, x)
+    enemyTimer = setTimeout(enemyTurn, 1000)
+}
+
+// Funcion de enemyTurn sin busqueda, únicamente random
+function enemyTurn ()
+{
+    var xValue = Math.floor(Math.random()*10);
+    var yValue = Math.floor(Math.random()*10);
+    while (arrayAttacks.includes({x:xValue,y:yValue}))
+    {
+        var xValue = Math.floor(Math.random()*10);
+        var yValue = Math.floor(Math.random()*10);
+    }
+    arrayAttacks.push({x:xValue,y:yValue});
+    cell = document.querySelector(`#player-board #r${yValue + 1} #c${xValue + 1}`)
+    console.log(cell)
+    checkHit(playerMap, cell, yValue, xValue)
 }
 
 /** --SETUP-- **/
 
 //Construir un tablero para el jugador y otro para el enemigo
+let enemyTimer = null
 let gameOver = false
 let playerMap = createBattleMap(5)
 let enemyMap = createBattleMap(5)
+var arrayAttacks = [];
 
 //representar los tableros en pantalla
 const playerBoard = newBoard('player')
@@ -154,7 +173,6 @@ const enemyBoard = newBoard('enemy')
 
 //representar los barcos en cada tablero
 printShips('player-board', playerMap)
-printShips('enemy-board', enemyMap)
 
 
 //Funcionalidad 'click' en el tablero enemigo
@@ -162,3 +180,4 @@ let cells = document.querySelectorAll('#enemy-board td')
 for (var i = 0; i < cells.length; i++) {
     cells[i].onclick = getCoord
 }
+
