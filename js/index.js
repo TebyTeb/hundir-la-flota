@@ -108,63 +108,114 @@ createBattleMap = function (num) {
 }
 
 checkGameOver = function (map) {
-    var sum = 0
-    for (let i = 0; i < map.length; i++) {
-        for (let j = 0; j < map[i].length; j++) {
-            if (map[i][j] === 1) {
-                sum++
-            }
-        }
-    }
-    if (sum === 0) {
-        alert('Game Over')
+    if (playerShips === 0) {
+        turnFlag.innerText = 'ENEMY'
+        winFlag.innerText = 'WINS'
+        deactivateAttack()
+        clearTimeout(enemyTimer)
+        gameOver = true
+    } else if (enemyShips === 0) {
+        turnFlag.innerText = 'PLAYER'
+        winFlag.innerText = 'WINS'
+        deactivateAttack()
+        clearTimeout(enemyTimer)
+        gameOver = true
     }
 }
 
 //Comprobamos si hemos acertado o no
-checkHit = function (map, cell, y, x) {
+checkHit = function (map, currMap, cell, y, x) {
     if (map[y][x] === 1) {
-        map[y][x] = 0
+        if (currMap === 'enemy') {
+            playerShips--
+            console.log(playerShips)
+        } else {
+            enemyShips--
+            console.log(enemyShips)
+        }
+        map[y][x] = 3
         printHit(cell)
         checkGameOver(map)
     } else {
+        map[y][x] = 2
         printMiss(cell)
     }
 }
 
 //Obtenemos las posiciones x e y del evento 'click' para comparar con el array objetivo
 getCoord = function (e) {
+    turnFlag.innerText = 'ENEMY'
     let cell = e.currentTarget
     //Obtenemos las coordenadas de la celda a traves de sus ID (r$ y c$) en formato string, haciendo un slice en la posición 1 para quedarnos con el número, al que convertimos a formato number para operar con él y le restamos 1 para obtener la posicion correcta en el mapa a comprobar
     let x = parseInt(cell.id.slice(1)) - 1
     let y = parseInt(cell.parentNode.id.slice(1)) - 1
-    checkHit(enemyMap, cell, y, x)
-    enemyTimer = setTimeout(enemyTurn, 1000)
+    let currMap = 'player'
+    checkHit(enemyMap, currMap, cell, y, x)
+    if (gameOver === false) {
+        enemyTimer = setTimeout(enemyTurn, 1000)
+    }
+    deactivateAttack()
 }
 
 // Funcion de enemyTurn sin busqueda, únicamente random
-function enemyTurn ()
-{
-    var xValue = Math.floor(Math.random()*10);
-    var yValue = Math.floor(Math.random()*10);
-    while (arrayAttacks.includes({x:xValue,y:yValue}))
-    {
-        var xValue = Math.floor(Math.random()*10);
-        var yValue = Math.floor(Math.random()*10);
+function enemyTurn() {
+    var xValue = Math.floor(Math.random() * 10);
+    var yValue = Math.floor(Math.random() * 10);
+    while (FindElement(xValue, yValue)) {
+        var xValue = Math.floor(Math.random() * 10);
+        var yValue = Math.floor(Math.random() * 10);
+        console.log(arrayAttacks)
     }
-    arrayAttacks.push({x:xValue,y:yValue});
+    arrayAttacks.push({ x: xValue, y: yValue });
     cell = document.querySelector(`#player-board #r${yValue + 1} #c${xValue + 1}`)
-    console.log(cell)
-    checkHit(playerMap, cell, yValue, xValue)
+    let currMap = 'enemy'
+    checkHit(playerMap, currMap, cell, yValue, xValue)
+    activateAttack()
+    turnFlag.innerText = 'PLAYER'
 }
 
+function FindElement(x, y) {
+    for (let i = 0; i < arrayAttacks.length; i++) {
+        if (arrayAttacks[i].x === x && arrayAttacks[i].y === y) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function deactivateAttack() {
+    let cells = document.querySelectorAll('#enemy-board td')
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].onclick = null
+    }
+}
+
+function activateAttack() {
+    let cells = document.querySelectorAll('#enemy-board td')
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].onclick = getCoord
+    }
+}
 /** --SETUP-- **/
 
-//Construir un tablero para el jugador y otro para el enemigo
-let enemyTimer = null
+//Selección del rótulo principal del juego.
+let turnFlag = document.querySelector('#turn')
+let winFlag = document.querySelector('#win')
+
+//Establecemos una variable global para comprobar si ha acabado el juego
 let gameOver = false
-let playerMap = createBattleMap(5)
-let enemyMap = createBattleMap(5)
+
+//Establecemos un timer para el turno del enemigo
+let enemyTimer = null
+
+//Establece la cantidad de barcos de inicio, y las 'vidas' iniciales de jugador y enemigo.
+let shipAmount = 5
+let playerShips = shipAmount
+let enemyShips = shipAmount
+
+//Construir un tablero para el jugador y otro para el enemigo
+let playerMap = createBattleMap(shipAmount)
+let enemyMap = createBattleMap(shipAmount)
 var arrayAttacks = [];
 
 //representar los tableros en pantalla
@@ -176,8 +227,10 @@ printShips('player-board', playerMap)
 
 
 //Funcionalidad 'click' en el tablero enemigo
-let cells = document.querySelectorAll('#enemy-board td')
-for (var i = 0; i < cells.length; i++) {
-    cells[i].onclick = getCoord
-}
+activateAttack()
 
+/* 
+Crear boton Start
+Crear Boton 'Set Ships'
+
+*/ 
