@@ -199,7 +199,7 @@ function enemyTurn() {
     cell = document.querySelector(`#player-board #r${yValue + 1} #c${xValue + 1}`)
     let currMap = 'enemy'
     checkHit(playerMap, currMap, cell, yValue, xValue)
-    if (gameOver == false)
+    if (gameOver === false)
     {
         activateAttack()
     }
@@ -247,24 +247,11 @@ function StartGame() {
     activateAttack();
 }
 
-function reStart() {
-    // Setear todas las casillas a none
-
-    
-
-    turnFlag.innerText = 'GET'
-    winFlag.innerText = 'READY'
-    buttonStart.innerText = "START GAME!"
-    buttonStart.onclick = null;
-}
-
 function EndGame() {
     var divButton = document.querySelector("#main-button");
     divButton.classList.remove('hide-button')
-    buttonStart.classList.remove("hide-button");
     buttonStart.innerText = "START NEW GAME!"
     buttonStart.onclick = null
-    divButton.onclick = null;
     gameOver = false;
     enemyTimer = null;
     shipAmount = 1;
@@ -303,7 +290,7 @@ const enemyBoard = newBoard('enemy')
 createButton()
 // Llamada a botón para iniciar la partida
 const buttonStart = document.querySelector('#main-button button');
-//representar los barcos en cada tablero
+//representar los barcos en cada tablero previsualización en la primera partida
 printShips('player-board', playerMap)
 printShips('enemy-board', enemyMap)
 
