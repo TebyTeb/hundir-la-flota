@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    /* margin: 0;
+    padding: 0; */
 }
 
 body {
@@ -17,22 +19,21 @@ body {
     text-align: center;
     padding-top: 0.2rem;
     width: 100%;
-    height: 600px;
+    height: 100%;
     display: none;
     border: 1px solid black;
 }
 
 div[id$='-side'] {
     display: inline-block;
-    margin: 0 2rem;
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: rgb(255, 255, 255);
 }
 
 table td {
     background-image: url(../img/waves.png);
     background-size: contain;
-    border-width: 1px; 
+    border-width: 1px;
     /* border-color: rgba(198, 222, 250, 0.726); */
 }
 
@@ -87,7 +88,7 @@ table {
 }
 
 .hide-button {
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .welcome {
@@ -107,5 +108,10 @@ table {
         left: 50%;
         margin-left: -450px;
         width: 900px
+    }
+
+    div[id$='-side'] {
+        margin: 0 2rem;
+        padding: 1rem;
     }
 }

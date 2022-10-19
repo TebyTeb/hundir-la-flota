@@ -8,7 +8,6 @@ function newBoard(owner) {
     let board = document.createElement('table')
     board.setAttribute('cellspacing', '0')
     board.setAttribute('cellpadding', '15px')
-    /* board.setAttribute('border', '1px') */
     board.setAttribute('id', `${owner}-board`)
     board.innerHTML = `<caption>${owner.toUpperCase()} BOARD</caption>`
     for (let i = 0; i < 10; i++) {
@@ -236,7 +235,7 @@ function StartGame() {
         cells[i].setAttribute('class', '')
     }
     printShips('player-board', playerMap)
-    printShips('enemy-board', enemyMap)
+    /* printShips('enemy-board', enemyMap) */
     document.querySelector(`#player-info p`).innerText = `Remaining ships= ${playerShips}`
     document.querySelector(`#enemy-info p`).innerText = `Remaining ships= ${enemyShips}`
     buttonStart.onclick = null;
