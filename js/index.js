@@ -199,7 +199,10 @@ function enemyTurn() {
     cell = document.querySelector(`#player-board #r${yValue + 1} #c${xValue + 1}`)
     let currMap = 'enemy'
     checkHit(playerMap, currMap, cell, yValue, xValue)
-    activateAttack()
+    if (gameOver == false)
+    {
+        activateAttack()
+    }
     turnFlag.innerText = 'PLAYER'
 }
 
@@ -222,11 +225,17 @@ function deactivateAttack() {
 function activateAttack() {
     let cells = document.querySelectorAll('#enemy-board td')
     for (var i = 0; i < cells.length; i++) {
+        if(cells[i].className == "" || cells[i].className == "boat")
         cells[i].onclick = getCoord
     }
 }
 
 function StartGame() {
+    let cells = document.querySelectorAll('td')
+    for (var i = 0; i < cells.length; i++) 
+    {
+        cells[i].setAttribute('class', '')
+    }
     printShips('player-board', playerMap)
     printShips('enemy-board', enemyMap)
     buttonStart.onclick= null;
@@ -234,7 +243,7 @@ function StartGame() {
     divButton.classList.add('hide-button')
     turnFlag.innerText = 'PLAYER'
     winFlag.innerText = 'TURN'
-
+    gameOver = false
     activateAttack();
 }
 
@@ -256,11 +265,7 @@ function EndGame() {
     buttonStart.innerText = "START NEW GAME!"
     buttonStart.onclick = null
     divButton.onclick = null;
-    let cells = document.querySelectorAll('td')
-    for (var i = 0; i < cells.length; i++) 
-    {
-        cells[i].setAttribute('class', '')
-    }
+    gameOver = false;
     enemyTimer = null;
     shipAmount = 1;
     playerShips = shipAmount;
