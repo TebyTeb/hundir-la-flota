@@ -24,7 +24,7 @@ function newBoard(owner) {
 
     let info = document.createElement('div')
     info.setAttribute('id', `${owner}-info`)
-    info.innerHTML = '<p>Remaining ships= x</p>'
+    info.innerHTML = `<p>Remaining ships= ${shipAmount}</p>`
 
     document.querySelector('.canvas').appendChild(side)
     document.querySelector(`#${owner}-side`).appendChild(board)
@@ -157,10 +157,10 @@ checkHit = function (map, currMap, cell, y, x) {
     if (map[y][x] === 1) {
         if (currMap === 'enemy') {
             playerShips--
-            console.log(playerShips)
+            document.querySelector(`#player-info p`).innerText = `Remaining ships= ${playerShips}`
         } else {
             enemyShips--
-            console.log(enemyShips)
+            document.querySelector(`#enemy-info p`).innerText = `Remaining ships= ${enemyShips}`
         }
         map[y][x] = 3
         printHit(cell)
@@ -254,7 +254,7 @@ function EndGame() {
     buttonStart.onclick = null
     gameOver = false;
     enemyTimer = null;
-    shipAmount = 1;
+    shipAmount = 6;
     playerShips = shipAmount;
     enemyShips = shipAmount;
     playerMap = createBattleMap(shipAmount)
@@ -262,6 +262,7 @@ function EndGame() {
     arrayAttacks = []
     buttonStart.addEventListener('click', StartGame)
 }
+
 /** --SETUP-- **/
 
 //Selección del rótulo principal del juego.
@@ -275,7 +276,7 @@ let gameOver = false
 let enemyTimer = null
 
 //Establece la cantidad de barcos de inicio, y las 'vidas' iniciales de jugador y enemigo.
-let shipAmount = 1
+let shipAmount = 6
 let playerShips = shipAmount
 let enemyShips = shipAmount
 
@@ -288,19 +289,15 @@ var arrayAttacks = [];
 const playerBoard = newBoard('player')
 const enemyBoard = newBoard('enemy')
 createButton()
+
 // Llamada a botón para iniciar la partida
 const buttonStart = document.querySelector('#main-button button');
+
 //representar los barcos en cada tablero previsualización en la primera partida
 printShips('player-board', playerMap)
-printShips('enemy-board', enemyMap)
+/* printShips('enemy-board', enemyMap) */
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
 buttonStart.onclick = StartGame;
-//Funcionalidad 'click' en el tablero enemigo
 
-
-/* 
-Crear boton Start
-Crear Boton 'Set Ships'
-*/ 
