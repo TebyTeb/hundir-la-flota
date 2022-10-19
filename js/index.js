@@ -31,27 +31,23 @@ function newBoard(owner) {
     document.querySelector(`#${owner}-side`).appendChild(info)
 }
 
-function createButton()
-{
+function createButton() {
     let father = document.querySelector(".canvas");
     let button = document.createElement("div");
     button.innerHTML = "<button>START GAME!</button>";
-    button.setAttribute("id","main-button")
+    button.setAttribute("id", "main-button")
     father.appendChild(button);
     return document.querySelector("#main-button");
 }
 
-function showButton(button)
-{
-    if(button.classList === "")
-    {
+function showButton(button) {
+    if (gameOver === false) {
         button.classList.add("hide-button");
     }
-    else
-    {
+    else {
         button.classList.remove("hide-button");
     }
-    
+
 }
 
 //Representa los barcos posicionados en el mapa designado
@@ -146,14 +142,15 @@ checkGameOver = function (map) {
         winFlag.innerText = 'WINS'
         deactivateAttack()
         clearTimeout(enemyTimer)
-        gameOver = true
+        EndGame()
     } else if (enemyShips === 0) {
         turnFlag.innerText = 'PLAYER'
         winFlag.innerText = 'WINS'
         deactivateAttack()
         clearTimeout(enemyTimer)
-        gameOver = true
+        EndGame()
     }
+    showButton(buttonStart)
 }
 
 //Comprobamos si hemos acertado o no
@@ -224,11 +221,58 @@ function deactivateAttack() {
 }
 
 function activateAttack() {
-    showButton(buttonStart);
     let cells = document.querySelectorAll('#enemy-board td')
     for (var i = 0; i < cells.length; i++) {
         cells[i].onclick = getCoord
     }
+}
+
+function StartGame() {
+    gameOver = false;
+    showButton(buttonStart);
+    turnFlag.innerText = 'PLAYER'
+    winFlag.innerText = 'TURN'
+
+    activateAttack();
+}
+
+function getReady() {
+    turnFlag.innerText = 'GET'
+    winFlag.innerText = 'READY'
+    gameOver = true;
+    showButton(buttonStart);
+    buttonStart.onclick = null
+    buttonStart.addEventListener('click', StartGame);
+}
+
+function reStart() {
+    // Setear todas las casillas a none
+
+    enemyTimer = null;
+    shipAmount = 1;
+    playerShips = shipAmount;
+    enemyShips = shipAmount;
+    playerMap = createBattleMap(shipAmount)
+    enemyMap = createBattleMap(shipAmount)
+    arrayAttacks = []
+
+    let cells = document.querySelectorAll('td')
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].setAttribute('class', '')
+    }
+    winFlag.innerText = 'TURN'
+    printShips('player-board', playerMap)
+    printShips('enemy-board', enemyMap)
+    getReady();
+}
+
+function EndGame() {
+    gameOver = true
+    showButton(buttonStart);
+    var button = document.querySelector("#main-button button")
+    button.innerText = "RESTART!"
+    buttonStart.onclick = null
+    button.addEventListener('click', reStart)
 }
 /** --SETUP-- **/
 
@@ -243,7 +287,7 @@ let gameOver = false
 let enemyTimer = null
 
 //Establece la cantidad de barcos de inicio, y las 'vidas' iniciales de jugador y enemigo.
-let shipAmount = 5
+let shipAmount = 1
 let playerShips = shipAmount
 let enemyShips = shipAmount
 
@@ -252,15 +296,17 @@ let playerMap = createBattleMap(shipAmount)
 let enemyMap = createBattleMap(shipAmount)
 var arrayAttacks = [];
 
-//representar los tableros en pantalla
+//representar los tableros y el botón en pantalla
 const playerBoard = newBoard('player')
 const enemyBoard = newBoard('enemy')
+createButton()
 // Llamada a botón para iniciar la partida
-const buttonStart = createButton();
-buttonStart.addEventListener('click',activateAttack)
+const buttonStart = document.querySelector('#main-button button');
 //representar los barcos en cada tablero
 printShips('player-board', playerMap)
+printShips('enemy-board', enemyMap)
 
+getReady()
 
 //Funcionalidad 'click' en el tablero enemigo
 
