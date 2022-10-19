@@ -7,8 +7,8 @@ function newBoard(owner) {
 
     let board = document.createElement('table')
     board.setAttribute('cellspacing', '0')
-    board.setAttribute('cellpadding', '10px')
-    board.setAttribute('border', '1px')
+    board.setAttribute('cellpadding', '15px')
+    /* board.setAttribute('border', '1px') */
     board.setAttribute('id', `${owner}-board`)
     board.innerHTML = `<caption>${owner.toUpperCase()} BOARD</caption>`
     for (let i = 0; i < 10; i++) {
@@ -24,7 +24,7 @@ function newBoard(owner) {
 
     let info = document.createElement('div')
     info.setAttribute('id', `${owner}-info`)
-    info.innerHTML = `<p>Remaining ships= ${shipAmount}</p>`
+    info.innerHTML = `<p>Remaining ships = ${shipAmount}</p>`
 
     document.querySelector('.canvas').appendChild(side)
     document.querySelector(`#${owner}-side`).appendChild(board)
@@ -253,7 +253,6 @@ function EndGame() {
     divButton.classList.remove('hide-button')
     buttonStart.innerText = "START NEW GAME!"
     buttonStart.onclick = null
-    gameOver = false;
     enemyTimer = null;
     shipAmount = 6;
     playerShips = shipAmount;

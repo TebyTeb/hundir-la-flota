@@ -2,9 +2,22 @@
     box-sizing: border-box;
 }
 
+body {
+    text-align: center;
+}
+
 .canvas {
+    /* background-image: url(../img/BackgroundScaled.png); */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.canvas,
+.welcome {
     text-align: center;
     padding-top: 0.2rem;
+    width: 100%;
+    height: 600px;
     display: none;
     border: 1px solid black;
 }
@@ -12,49 +25,87 @@
 div[id$='-side'] {
     display: inline-block;
     margin: 0 2rem;
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
 }
 
 table td {
-    background-color: rgba(83, 156, 199, 0.774);
+    background-image: url(../img/waves.png);
+    background-size: contain;
+    border-width: 1px; 
+    /* border-color: rgba(198, 222, 250, 0.726); */
 }
 
 table td:hover {
     cursor: pointer;
 }
 
+table {
+    border: 1px dashed rgb(255, 255, 255);
+}
+
 .boat,
 .boat:hover {
-    background-color: rgba(219, 191, 32, 0.966);
+    /* background-color: rgba(219, 191, 32, 0.966); */
+    background-image: url(../img/boat.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 
 }
 
 .water,
 .water:hover {
-    background-color: rgba(37, 143, 204, 0.966);
+    background-image: url(../img/waterHit.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: auto;
 }
 
 .hit,
 .hit:hover {
-    background-color: rgba(185, 58, 35, 0.966);
-
+    background-image: url(../img/hit.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: auto;
 }
 
-#main-button button
-{
-    display:inline-block;
-    margin: 0 auto;
+#main-button button {
+    display: inline-block;
+    margin: 1rem auto 2rem auto;
 }
 
-.hide-button
-{
-    display: none;
+#start-button button {
+    width: 110px;
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    bottom: 0;
+    margin: 0 auto 2rem -55px;
+}
+
+.hide-button {
+    /* visibility: hidden; */
 }
 
 .welcome {
+    position: relative;
     display: block;
-    background-color: blue;
-    width: 100%;
-    height: 700px;
+    background-image: url(../img/BackgroundScaled.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 493.05px;
+}
+
+@media (min-width: 900px) {
+
+    .welcome,
+    .canvas {
+        position: absolute;
+        left: 50%;
+        margin-left: -450px;
+        width: 900px
+    }
 }
