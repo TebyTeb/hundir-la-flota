@@ -141,15 +141,16 @@ checkGameOver = function (map) {
         winFlag.innerText = 'WINS'
         deactivateAttack()
         clearTimeout(enemyTimer)
+        gameOver = true;
         EndGame()
     } else if (enemyShips === 0) {
         turnFlag.innerText = 'PLAYER'
         winFlag.innerText = 'WINS'
         deactivateAttack()
         clearTimeout(enemyTimer)
+        gameOver = true;
         EndGame()
     }
-    gameOver = true;
 }
 
 //Comprobamos si hemos acertado o no
@@ -199,8 +200,7 @@ function enemyTurn() {
     cell = document.querySelector(`#player-board #r${yValue + 1} #c${xValue + 1}`)
     let currMap = 'enemy'
     checkHit(playerMap, currMap, cell, yValue, xValue)
-    if (gameOver === false)
-    {
+    if (gameOver === false) {
         activateAttack()
     }
     turnFlag.innerText = 'PLAYER'
@@ -225,20 +225,21 @@ function deactivateAttack() {
 function activateAttack() {
     let cells = document.querySelectorAll('#enemy-board td')
     for (var i = 0; i < cells.length; i++) {
-        if(cells[i].className == "" || cells[i].className == "boat")
-        cells[i].onclick = getCoord
+        if (cells[i].className == "" || cells[i].className == "boat")
+            cells[i].onclick = getCoord
     }
 }
 
 function StartGame() {
     let cells = document.querySelectorAll('td')
-    for (var i = 0; i < cells.length; i++) 
-    {
+    for (var i = 0; i < cells.length; i++) {
         cells[i].setAttribute('class', '')
     }
     printShips('player-board', playerMap)
     printShips('enemy-board', enemyMap)
-    buttonStart.onclick= null;
+    document.querySelector(`#player-info p`).innerText = `Remaining ships= ${playerShips}`
+    document.querySelector(`#enemy-info p`).innerText = `Remaining ships= ${enemyShips}`
+    buttonStart.onclick = null;
     var divButton = document.querySelector("#main-button");
     divButton.classList.add('hide-button')
     turnFlag.innerText = 'PLAYER'
