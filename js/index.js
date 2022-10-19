@@ -229,7 +229,7 @@ function activateAttack() {
 
 function StartGame() {
     gameOver = false;
-    showButton(buttonStart);
+    showButton(buttonDiv);
     turnFlag.innerText = 'PLAYER'
     winFlag.innerText = 'TURN'
 
@@ -240,7 +240,7 @@ function getReady() {
     turnFlag.innerText = 'GET'
     winFlag.innerText = 'READY'
     gameOver = true;
-    showButton(buttonStart);
+    showButton(buttonDiv);
     buttonStart.onclick = null
     buttonStart.addEventListener('click', StartGame);
 }
@@ -268,7 +268,7 @@ function reStart() {
 
 function EndGame() {
     gameOver = true
-    showButton(buttonStart);
+    showButton(buttonDiv);
     var button = document.querySelector("#main-button button")
     button.innerText = "RESTART!"
     buttonStart.onclick = null
@@ -299,7 +299,7 @@ var arrayAttacks = [];
 //representar los tableros y el botón en pantalla
 const playerBoard = newBoard('player')
 const enemyBoard = newBoard('enemy')
-createButton()
+const buttonDiv = createButton()
 // Llamada a botón para iniciar la partida
 const buttonStart = document.querySelector('#main-button button');
 //representar los barcos en cada tablero
