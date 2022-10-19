@@ -129,3 +129,8 @@ caption {
 #player-info,#enemy-info {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.lifes{
+    width: 30px;
+    height: 30px;
+}

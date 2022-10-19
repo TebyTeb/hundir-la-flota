@@ -23,7 +23,7 @@ function newBoard(owner) {
 
     let info = document.createElement('div')
     info.setAttribute('id', `${owner}-info`)
-    info.innerHTML = `<p>Remaining ships = ${shipAmount}</p>`
+    info.innerHTML = `<p>Remaining ships = ${returnBoatImages(shipAmount)}</p>`
 
     document.querySelector('.canvas').appendChild(side)
     document.querySelector(`#${owner}-side`).appendChild(board)
@@ -157,10 +157,10 @@ checkHit = function (map, currMap, cell, y, x) {
     if (map[y][x] === 1) {
         if (currMap === 'enemy') {
             playerShips--
-            document.querySelector(`#player-info p`).innerText = `Remaining ships= ${playerShips}`
+            document.querySelector(`#player-info p`).innerHTML = `Remaining ships= ${returnBoatImages(playerShips)}`
         } else {
             enemyShips--
-            document.querySelector(`#enemy-info p`).innerText = `Remaining ships= ${enemyShips}`
+            document.querySelector(`#enemy-info p`).innerHTML = `Remaining ships= ${returnBoatImages(enemyShips)}`
         }
         map[y][x] = 3
         printHit(cell)
@@ -236,8 +236,8 @@ function StartGame() {
     }
     printShips('player-board', playerMap)
     /* printShips('enemy-board', enemyMap) */
-    document.querySelector(`#player-info p`).innerText = `Remaining ships= ${playerShips}`
-    document.querySelector(`#enemy-info p`).innerText = `Remaining ships= ${enemyShips}`
+    document.querySelector(`#player-info p`).innerHTML = `Remaining ships= ${returnBoatImages(playerShips)}`
+    document.querySelector(`#enemy-info p`).innerHTML = `Remaining ships=${returnBoatImages(enemyShips)}`
     buttonStart.onclick = null;
     var divButton = document.querySelector("#main-button");
     divButton.classList.add('hide-button')
@@ -260,6 +260,14 @@ function EndGame() {
     enemyMap = createBattleMap(shipAmount)
     arrayAttacks = []
     buttonStart.addEventListener('click', StartGame)
+}
+
+function returnBoatImages(count){
+    let result = ""
+    for(let i = 0; i<count; i++){
+        result = result + `<img class='lifes' src='img/boat.png'></img>`
+    }
+    return result
 }
 
 /** --SETUP-- **/
