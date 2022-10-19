@@ -7,7 +7,7 @@
     padding-top: 5rem;
 }
 
-table {
+div[id$='-side'] {
     display: inline-block;
     margin: 0 2rem;
 }
@@ -38,4 +38,15 @@ table td:hover {
     background-color: rgba(185, 58, 35, 0.966);
 
     cursor: auto;
+}
+
+#main-button button
+{
+    display:inline-block;
+    margin: 0 auto;
+}
+
+.hide-button
+{
+    display: none;
 }

@@ -2,6 +2,9 @@
 
 //Constructor de tableros
 function newBoard(owner) {
+    let side = document.createElement('div')
+    side.setAttribute('id', `${owner}-side`)
+
     let board = document.createElement('table')
     board.setAttribute('cellspacing', '0')
     board.setAttribute('cellpadding', '10px')
@@ -18,7 +21,37 @@ function newBoard(owner) {
         }
         board.appendChild(row)
     }
-    document.querySelector('.canvas').appendChild(board)
+
+    let info = document.createElement('div')
+    info.setAttribute('id', `${owner}-info`)
+    info.innerHTML = '<p>Remaining ships= x</p>'
+
+    document.querySelector('.canvas').appendChild(side)
+    document.querySelector(`#${owner}-side`).appendChild(board)
+    document.querySelector(`#${owner}-side`).appendChild(info)
+}
+
+function createButton()
+{
+    let father = document.querySelector(".canvas");
+    let button = document.createElement("div");
+    button.innerHTML = "<button>START GAME!</button>";
+    button.setAttribute("id","main-button")
+    father.appendChild(button);
+    return document.querySelector("#main-button");
+}
+
+function showButton(button)
+{
+    if(button.classList === "")
+    {
+        button.classList.add("hide-button");
+    }
+    else
+    {
+        button.classList.remove("hide-button");
+    }
+    
 }
 
 //Representa los barcos posicionados en el mapa designado
@@ -191,6 +224,7 @@ function deactivateAttack() {
 }
 
 function activateAttack() {
+    showButton(buttonStart);
     let cells = document.querySelectorAll('#enemy-board td')
     for (var i = 0; i < cells.length; i++) {
         cells[i].onclick = getCoord
@@ -221,16 +255,17 @@ var arrayAttacks = [];
 //representar los tableros en pantalla
 const playerBoard = newBoard('player')
 const enemyBoard = newBoard('enemy')
-
+// Llamada a botón para iniciar la partida
+const buttonStart = createButton();
+buttonStart.addEventListener('click',activateAttack)
 //representar los barcos en cada tablero
 printShips('player-board', playerMap)
 
 
 //Funcionalidad 'click' en el tablero enemigo
-activateAttack()
+
 
 /* 
 Crear boton Start
 Crear Boton 'Set Ships'
-
 */ 
