@@ -5,6 +5,8 @@
 .canvas {
     text-align: center;
     padding-top: 0.2rem;
+    display: none;
+    border: 1px solid black;
 }
 
 div[id$='-side'] {
@@ -17,7 +19,6 @@ table td {
 }
 
 table td:hover {
-    background-color: rgba(164, 203, 226, 0.966);
     cursor: pointer;
 }
 
@@ -49,4 +50,11 @@ table td:hover {
 .hide-button
 {
     display: none;
+}
+
+.welcome {
+    display: block;
+    background-color: blue;
+    width: 100%;
+    height: 700px;
 }

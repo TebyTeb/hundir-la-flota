@@ -294,11 +294,17 @@ createButton()
 // Llamada a botón para iniciar la partida
 const buttonStart = document.querySelector('#main-button button');
 
+const buttonWelcome = document.querySelector('#start-button button');
+
 //representar los barcos en cada tablero previsualización en la primera partida
 printShips('player-board', playerMap)
 /* printShips('enemy-board', enemyMap) */
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
-buttonStart.onclick = StartGame;
+buttonWelcome.addEventListener('click', function() {
+    document.querySelector('.canvas').style.display = 'block'
+    document.querySelector('.welcome').style.display = 'none'
+    StartGame()
+}) 
 
