@@ -290,7 +290,7 @@ let gameOver = false
 
 //Establecemos un timer para el turno del enemigo
 let enemyTimer = null
-
+let playerTimer = null
 //Establece la cantidad de barcos de inicio, y las 'vidas' iniciales de jugador y enemigo.
 let shipAmount = 6
 let playerShips = shipAmount
