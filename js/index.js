@@ -14,7 +14,7 @@ function newBoard(owner) {
         let row = document.createElement('tr')
         row.setAttribute('id', `r${i + 1}`)
         for (let j = 0; j < 10; j++) {
-            let cell = document.createElement('td')
+           let cell = document.createElement('td')
             cell.setAttribute('id', `c${j + 1}`)
             row.appendChild(cell)
         }
@@ -265,7 +265,7 @@ function EndGame() {
 function returnBoatImages(count){
     let result = ""
     for(let i = 0; i<count; i++){
-        result = result + `<img class='lifes' src='img/boat.png'></img>`
+        result += `<img class='lifes' src='img/boat.png'></img>`
     }
     return result
 }
