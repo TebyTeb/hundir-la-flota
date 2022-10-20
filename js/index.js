@@ -146,6 +146,7 @@ checkGameOver = function (map) {
     if (playerShips === 0) {
         turnFlag.innerText = 'ENEMY'
         winFlag.innerText = 'WINS'
+        lose.play()
         deactivateAttack()
         clearTimeout(enemyTimer)
         gameOver = true;
@@ -153,6 +154,7 @@ checkGameOver = function (map) {
     } else if (enemyShips === 0) {
         turnFlag.innerText = 'PLAYER'
         winFlag.innerText = 'WINS'
+        win.play();
         deactivateAttack()
         clearTimeout(enemyTimer)
         gameOver = true;
@@ -163,6 +165,7 @@ checkGameOver = function (map) {
 //Comprobamos si hemos acertado o no
 checkHit = function (map, currMap, cell, y, x) {
     if (map[y][x] === 1) {
+        hit.play()
         if (currMap === 'enemy') {
             playerShips--
             document.querySelector(`#player-info p`).innerHTML = `${returnBoatImages(playerShips)}`
@@ -174,6 +177,7 @@ checkHit = function (map, currMap, cell, y, x) {
         printHit(cell)
         checkGameOver(map)
     } else {
+        miss.play();
         map[y][x] = 2
         printMiss(cell)
     }
@@ -238,6 +242,7 @@ function activateAttack() {
 }
 
 function StartGame() {
+    transition.play();
     let cells = document.querySelectorAll('td')
     for (var i = 0; i < cells.length; i++) {
         cells[i].setAttribute('class', '')
@@ -307,10 +312,23 @@ const buttonWelcome = document.querySelector('#start-button button');
 //representar los barcos en cada tablero previsualización en la primera partida
 printShips('player-board', playerMap)
 /* printShips('enemy-board', enemyMap) */
+// Importar audios:
+const transition = new Audio("./audio/transicionEffect.mp3")
+transition.volume = 0.07;
+const hit = new Audio("./audio/hitEffect.mp3")
+hit.volume = 0.07;
+const miss = new Audio("./audio/missEffect.mp3")
+miss.volume = 0.07;
+const win = new Audio("./audio/Win.mp3")
+win.volume = 0.07;
+const lose = new Audio("./audio/Lose.mp3")
+lose.volume = 0.07;
+
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
 buttonWelcome.addEventListener('click', function () {
+    
     document.querySelector('.canvas').style.display = 'block'
     document.querySelector('.welcome').style.display = 'none'
     StartGame()
