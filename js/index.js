@@ -248,7 +248,7 @@ function StartGame() {
         cells[i].setAttribute('class', '')
     }
     printShips('player-board', playerMap)
-    printShips('enemy-board', enemyMap)
+    /* printShips('enemy-board', enemyMap) */
     document.querySelector(`#player-info`).innerHTML = `${returnBoatImages(playerShips)}`
     document.querySelector(`#enemy-info`).innerHTML = `${returnBoatImages(enemyShips)}`
     buttonStart.onclick = null;
