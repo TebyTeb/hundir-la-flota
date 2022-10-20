@@ -186,6 +186,7 @@ checkHit = function (map, currMap, cell, y, x) {
 //Obtenemos las posiciones x e y del evento 'click' para comparar con el array objetivo
 getCoord = function (e) {
     turnFlag.innerText = 'ENEMY'
+    playerTimer = null;
     let cell = e.currentTarget
     //Obtenemos las coordenadas de la celda a traves de sus ID (r$ y c$) en formato string, haciendo un slice en la posición 1 para quedarnos con el número, al que convertimos a formato number para operar con él y le restamos 1 para obtener la posicion correcta en el mapa a comprobar
     let x = parseInt(cell.id.slice(1)) - 1
@@ -200,6 +201,8 @@ getCoord = function (e) {
 
 // Funcion de enemyTurn sin busqueda, únicamente random
 function enemyTurn() {
+    turnFlag.innerText = 'PLAYER'
+    enemyTimer = null;
     var xValue = Math.floor(Math.random() * 10);
     var yValue = Math.floor(Math.random() * 10);
     while (FindElement(xValue, yValue)) {
@@ -212,9 +215,8 @@ function enemyTurn() {
     let currMap = 'enemy'
     checkHit(playerMap, currMap, cell, yValue, xValue)
     if (gameOver === false) {
-        activateAttack()
+        playerTimer = setTimeout(activateAttack(),1800);
     }
-    turnFlag.innerText = 'PLAYER'
 }
 
 function FindElement(x, y) {
