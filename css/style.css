@@ -1,41 +1,216 @@
-* {
+@font-face {
+    font-family: underground-nf-regular;
+    src: url(../fonts/underground.regular.otf);
+}
+
+@font-face {
+    font-family: dmg;
+    src: url(../fonts/dmg.ttf);
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
 }
 
 .canvas {
-    text-align: center;
-    padding-top: 5rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+        url(../img/BackgroundScaled.png);
+    background-size: contain;
+    background-repeat: repeat-y;
 }
 
-table {
+.canvas,
+.welcome {
+    text-align: center;
+    padding-top: 0.2rem;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+@media (max-width: 635px) {
+    .canvas,
+    .welcome {
+        margin: auto;
+        width: 100%; 
+        height: fit-content;
+    }
+}
+@media (min-width: 900px) {
+    .canvas,
+    .welcome {
+        margin: auto;
+        width: 900px; 
+        height: 100%;
+    }
+}
+
+div[id$='-side'] {
     display: inline-block;
-    margin: 0 2rem;
+    padding: 0.5rem;
 }
 
 table td {
-    background-color: rgba(83, 156, 199, 0.774);
+    background-image: url(../img/waves.png);
+    background-size: contain;
+    border-width: 1px;
+    padding: 15px;
 }
 
-table td:hover {
-    background-color: rgba(164, 203, 226, 0.966);
+#enemy-side>table td:hover {
     cursor: pointer;
+}
+
+table {
+    border: 1px dashed rgb(17, 40, 141);
 }
 
 .boat,
 .boat:hover {
-    background-color: rgba(219, 191, 32, 0.966);
+    background-image: url(../img/boat.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 
 }
 
 .water,
 .water:hover {
-    background-color: rgba(37, 143, 204, 0.966);
+    background-image: url(../img/waterHit.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: auto;
 }
 
 .hit,
 .hit:hover {
-    background-color: rgba(185, 58, 35, 0.966);
-
+    background-image: url(../img/hit.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: auto;
+}
+
+#main-button button {
+    width: 300px;
+    display: inline-block;
+    margin: 1rem auto 2rem auto;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'dmg', sans-serif;
+    height: 50px;
+    font-size: 20px;
+    padding: 0 16px 0 16px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#main-button button:hover {
+    background-color: #e4e6eb;
+    color: #050505;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+#start-button button {
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    bottom: 0;
+    margin-top: 450px;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    height: 50px;
+    padding: 0 16px 0 16px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+
+#start-button button:hover {
+    background-color: #e4e6eb;
+    color: #050505;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.hide-button {
+    visibility: hidden;
+}
+
+.welcome {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: block;
+    background-image: url(../img/portadaScaled_2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 1000px;
+}
+
+
+h1 {
+    font-family: 'underground-nf-regular', sans-serif;
+    font-size: 6rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: rgb(17, 40, 141);
+}
+
+h2 {
+    font-family: 'dmg', sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    letter-spacing: -1px;
+    color: rgb(17, 40, 141);
+}
+
+caption {
+    color: rgb(17, 40, 141);
+    font-family: 'dmg', sans-serif;
+    font-weight: bolder;
+}
+
+#player-info,
+#enemy-info {
+    display: inline-block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.lifes {
+    width: 40px;
+    height: 40px;
+    margin: 1px 3px;
+    border: 1px dotted rgba(17, 40, 141, .6);
+    border-radius: 15%;
+}
+
+.hidden {
+    width: 1px;
+    height: 40px;
+    margin: 1px 0;
+    visibility: hidden;
+}
+
+#gradi {
+    background: radial-gradient(rgb(70, 66, 66), rgb(27, 27, 14), rgb(34, 59, 83));
+    height: 100vh;
 }
