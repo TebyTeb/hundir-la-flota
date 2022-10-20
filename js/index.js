@@ -61,12 +61,57 @@ printShips = function (board, map) {
 }
 
 printMiss = function (cell) {
-    cell.classList.add('water')
+    /*
+    // LOS DOS PRIMEROS CONDICIONALES SON SOLO PARA LA DEMO EN VIVO!!!
+    if (cell === 1)
+    {
+        let cells = document.querySelectorAll('#enemy-board td')
+        for (let i = 0; i < cells.length; i++)
+        {
+            cells[i].classList.add("water");
+        }
+    }
+    else if (cell === 2)
+    {
+        let cells = document.querySelectorAll('#player-board td')
+        for (let i = 0; i < cells.length; i++)
+        {
+            cells[i].classList.add("water");
+        }
+    }
+    else
+    {
+        */
+        cell.classList.add('water')
+    //}
 }
 
 printHit = function (cell) {
-    cell.classList.add('hit')
-    cell.classList.remove('boat')
+    /*
+    // LOS DOS PRIMEROS CONDICIONALES SON SOLO PARA LA DEMO EN VIVO!!!
+    if(cell === 1)
+    {
+        let cells = document.querySelectorAll('#enemy-board td')
+        for (let i = 0; i < cells.length; i++)
+        {
+            cells[i].classList.add("hit");
+            cells[i].classList.remove('boat')
+        }
+    }
+    else if (cell === 2)
+    {
+        let cells = document.querySelectorAll('#player-board td')
+        for (let i = 0; i < cells.length; i++)
+        {
+            cells[i].classList.add("water");
+        }
+    }
+    else
+    {
+        */
+        cell.classList.add('hit')
+        cell.classList.remove('boat')
+    //}
 }
 
 function returnBoatImages(count) {
@@ -142,7 +187,7 @@ createBattleMap = function (num) {
     return map
 }
 
-checkGameOver = function (map) {
+checkGameOver = function () {
     if (playerShips === 0) {
         turnFlag.innerText = 'ENEMY'
         winFlag.innerText = 'WINS'
@@ -175,7 +220,7 @@ checkHit = function (map, currMap, cell, y, x) {
         }
         map[y][x] = 3
         printHit(cell)
-        checkGameOver(map)
+        checkGameOver()
     } else {
         miss.play();
         map[y][x] = 2
@@ -276,9 +321,6 @@ function EndGame() {
     arrayAttacks = []
     buttonStart.addEventListener('click', StartGame)
 }
-
-
-
 /** --SETUP-- **/
 
 //Selección del rótulo principal del juego.
@@ -331,9 +373,61 @@ ost.loop = true
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
+
+
+// Get the input field
+
+
+
 buttonWelcome.addEventListener('click', function () {
     ost.play()
     document.querySelector('.canvas').style.display = 'block'
     document.querySelector('.welcome').style.display = 'none'
     StartGame()
 })
+
+
+addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    deactivateAttack();
+    enemyTimer = null;
+    playerTimer = null;
+    if (event.key === "1")
+    {
+        let cells = document.querySelectorAll("#enemy-board td")
+        for(let i = 0; i < enemyMap.length; i++)
+        {
+            for (let j = 0; j < enemyMap[i].length; j++)
+            {
+                let cell = cells[j + i * enemyMap[i].length];
+                checkHit(enemyMap, 'player', cell, i, j)
+            }
+        }
+        document.querySelector(`#enemy-info`).innerHTML = `${returnBoatImages(0)}`
+        enemyShips = 6;
+    }
+    else if (event.key === "2")
+    {
+        let cells = document.querySelectorAll("#player-board td")
+        for(let i = 0; i < enemyMap.length; i++)
+        {
+            for (let j = 0; j < enemyMap[i].length; j++)
+            {
+                let cell = cells[j + i * enemyMap[i].length];
+                checkHit(playerMap, 'enemy', cell, i, j)
+            }
+        }
+        document.querySelector(`#player-info`).innerHTML = `${returnBoatImages(0)}`
+        playerShips = 6;
+    }
+    EndGame();
+});
+
+// ONLY FOR VISUAL LIFE DEMO:
+
+// vidas a cero
+// cambiar texto
+// hacer que suene la música correspondiente
+
+
+
