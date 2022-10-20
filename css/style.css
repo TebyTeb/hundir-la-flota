@@ -21,7 +21,6 @@ body {
 }
 
 .canvas {
-    /* background-image: url(../img/BackgroundScaled.png); */
     background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
         url(../img/BackgroundScaled.png);
     background-size: contain;
@@ -40,7 +39,6 @@ body {
 div[id$='-side'] {
     display: inline-block;
     padding: 0.5rem;
-    /* background-color: rgb(255, 255, 255); */
 }
 
 table td {
@@ -48,7 +46,6 @@ table td {
     background-size: contain;
     border-width: 1px;
     padding: 15px;
-    /* border-color: rgba(198, 222, 250, 0.726); */
 }
 
 #enemy-side>table td:hover {
@@ -61,7 +58,6 @@ table {
 
 .boat,
 .boat:hover {
-    /* background-color: rgba(219, 191, 32, 0.966); */
     background-image: url(../img/boat.png);
     background-size: contain;
     background-position: center;
