@@ -215,7 +215,7 @@ function enemyTurn() {
     let currMap = 'enemy'
     checkHit(playerMap, currMap, cell, yValue, xValue)
     if (gameOver === false) {
-        playerTimer = setTimeout(activateAttack(),1800);
+        playerTimer = setTimeout(activateAttack(),800);
     }
 }
 
