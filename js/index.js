@@ -23,7 +23,7 @@ function newBoard(owner) {
 
     let info = document.createElement('div')
     info.setAttribute('id', `${owner}-info`)
-    info.innerHTML = `<p>${returnBoatImages(shipAmount)}</p>`
+    info.innerHTML = `${returnBoatImages(shipAmount)}`
 
     document.querySelector('.canvas').appendChild(side)
     document.querySelector(`#${owner}-side`).appendChild(board)
@@ -70,7 +70,7 @@ printHit = function (cell) {
 }
 
 function returnBoatImages(count) {
-    let result = ""
+    let result = `<img class='hidden' src='img/spacer.png'></img>`
     for (let i = 0; i < count; i++) {
         result += `<img class='lifes' src='img/boat.png'></img>`
     }
@@ -168,10 +168,10 @@ checkHit = function (map, currMap, cell, y, x) {
         hit.play()
         if (currMap === 'enemy') {
             playerShips--
-            document.querySelector(`#player-info p`).innerHTML = `${returnBoatImages(playerShips)}`
+            document.querySelector(`#player-info`).innerHTML = `${returnBoatImages(playerShips)}`
         } else {
             enemyShips--
-            document.querySelector(`#enemy-info p`).innerHTML = `${returnBoatImages(enemyShips)}`
+            document.querySelector(`#enemy-info`).innerHTML = `${returnBoatImages(enemyShips)}`
         }
         map[y][x] = 3
         printHit(cell)
@@ -193,7 +193,7 @@ getCoord = function (e) {
     let currMap = 'player'
     checkHit(enemyMap, currMap, cell, y, x)
     if (gameOver === false) {
-        enemyTimer = setTimeout(enemyTurn, 1000)
+        enemyTimer = setTimeout(enemyTurn, 1800)
     }
     deactivateAttack()
 }
@@ -249,8 +249,8 @@ function StartGame() {
     }
     printShips('player-board', playerMap)
     printShips('enemy-board', enemyMap)
-    document.querySelector(`#player-info p`).innerHTML = `${returnBoatImages(playerShips)}`
-    document.querySelector(`#enemy-info p`).innerHTML = `${returnBoatImages(enemyShips)}`
+    document.querySelector(`#player-info`).innerHTML = `${returnBoatImages(playerShips)}`
+    document.querySelector(`#enemy-info`).innerHTML = `${returnBoatImages(enemyShips)}`
     buttonStart.onclick = null;
     var divButton = document.querySelector("#main-button");
     divButton.classList.add('hide-button')
@@ -322,13 +322,13 @@ miss.volume = 0.07;
 const win = new Audio("./audio/Win.mp3")
 win.volume = 0.07;
 const lose = new Audio("./audio/Lose.mp3")
-lose.volume = 0.07;
+lose.volume = 0.07;
 
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
 buttonWelcome.addEventListener('click', function () {
-    
+
     document.querySelector('.canvas').style.display = 'block'
     document.querySelector('.welcome').style.display = 'none'
     StartGame()
