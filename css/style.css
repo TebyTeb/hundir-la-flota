@@ -1,3 +1,13 @@
+@font-face {
+    font-family: underground-nf-regular;
+    src: url(../fonts/underground.regular.otf);
+}
+
+@font-face {
+    font-family: dmg;
+    src: url(../fonts/dmg.ttf);
+}
+
 *,
 *::before,
 *::after {
@@ -12,8 +22,10 @@ body {
 
 .canvas {
     /* background-image: url(../img/BackgroundScaled.png); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+        url(../img/BackgroundScaled.png);
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
 
 .canvas,
@@ -23,13 +35,12 @@ body {
     width: 100%;
     height: 100%;
     display: none;
-    background-color: darkslategrey;
 }
 
 div[id$='-side'] {
     display: inline-block;
     padding: 0.5rem;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
 }
 
 table td {
@@ -87,24 +98,24 @@ table {
     display: inline-block;
     bottom: 0;
     margin-top: 350px;
-    background-color: #1877f2; 
-    border: none; 
-    border-radius: 6px; 
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
     color: #fff;
     font-family: 'Open Sans', sans-serif;
-    font-size: 30px; 
-    height: 50px; 
-    padding: 0 16px 0 16px; 
-    transition: 0.3s; 
-    cursor: pointer; 
+    font-size: 30px;
+    height: 50px;
+    padding: 0 16px 0 16px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 
-#start-button button:hover{
-    background-color: #e4e6eb; 
-    color: #050505; 
-    font-size: 15px; 
-    transition: 0.3s; 
+#start-button button:hover {
+    background-color: #e4e6eb;
+    color: #050505;
+    font-size: 15px;
+    transition: 0.3s;
 }
 
 .hide-button {
@@ -137,20 +148,26 @@ table {
     }
 }
 
-h2 {
-    font-family: 'League Spartan', sans-serif;
-    color: #050505;
+h1 {
+    font-family: 'underground-nf-regular', sans-serif;
+    font-size: 6rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color:rgb(17, 40, 141);
 }
 
-h1 {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 2.3cm;
-    color: #050505;
+h2 {
+    font-family: 'dmg', sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    letter-spacing: -1px;
+    color:rgb(17, 40, 141);
 }
 
 caption {
-    color: #050505;
-    font-family: 'Open Sans', sans-serif;
+    color:rgb(17, 40, 141);
+    font-family: 'dmg', sans-serif;
+    font-weight: bolder;
 }
 
 #player-info,
@@ -165,7 +182,8 @@ caption {
     width: 40px;
     height: 40px;
     margin: 1px 3px;
-    border: 1px dashed rgba(17, 40, 141,.6);
+    border: 1px dotted rgba(17, 40, 141, .6);
+    border-radius: 15%;
 }
 
 .hidden {
