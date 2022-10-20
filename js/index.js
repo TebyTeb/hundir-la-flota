@@ -14,7 +14,7 @@ function newBoard(owner) {
         let row = document.createElement('tr')
         row.setAttribute('id', `r${i + 1}`)
         for (let j = 0; j < 10; j++) {
-           let cell = document.createElement('td')
+            let cell = document.createElement('td')
             cell.setAttribute('id', `c${j + 1}`)
             row.appendChild(cell)
         }
@@ -23,7 +23,7 @@ function newBoard(owner) {
 
     let info = document.createElement('div')
     info.setAttribute('id', `${owner}-info`)
-    info.innerHTML = `<p>Remaining ships = ${returnBoatImages(shipAmount)}</p>`
+    info.innerHTML = `<p>${returnBoatImages(shipAmount)}</p>`
 
     document.querySelector('.canvas').appendChild(side)
     document.querySelector(`#${owner}-side`).appendChild(board)
@@ -67,6 +67,14 @@ printMiss = function (cell) {
 printHit = function (cell) {
     cell.classList.add('hit')
     cell.classList.remove('boat')
+}
+
+function returnBoatImages(count) {
+    let result = ""
+    for (let i = 0; i < count; i++) {
+        result += `<img class='lifes' src='img/boat.png'></img>`
+    }
+    return result
 }
 
 /** --LÓGICA DEL JUEGO-- **/
@@ -157,10 +165,10 @@ checkHit = function (map, currMap, cell, y, x) {
     if (map[y][x] === 1) {
         if (currMap === 'enemy') {
             playerShips--
-            document.querySelector(`#player-info p`).innerHTML = `Remaining ships= ${returnBoatImages(playerShips)}`
+            document.querySelector(`#player-info p`).innerHTML = `${returnBoatImages(playerShips)}`
         } else {
             enemyShips--
-            document.querySelector(`#enemy-info p`).innerHTML = `Remaining ships= ${returnBoatImages(enemyShips)}`
+            document.querySelector(`#enemy-info p`).innerHTML = `${returnBoatImages(enemyShips)}`
         }
         map[y][x] = 3
         printHit(cell)
@@ -235,9 +243,9 @@ function StartGame() {
         cells[i].setAttribute('class', '')
     }
     printShips('player-board', playerMap)
-    /* printShips('enemy-board', enemyMap) */
-    document.querySelector(`#player-info p`).innerHTML = `Remaining ships= ${returnBoatImages(playerShips)}`
-    document.querySelector(`#enemy-info p`).innerHTML = `Remaining ships=${returnBoatImages(enemyShips)}`
+    printShips('enemy-board', enemyMap)
+    document.querySelector(`#player-info p`).innerHTML = `${returnBoatImages(playerShips)}`
+    document.querySelector(`#enemy-info p`).innerHTML = `${returnBoatImages(enemyShips)}`
     buttonStart.onclick = null;
     var divButton = document.querySelector("#main-button");
     divButton.classList.add('hide-button')
@@ -262,13 +270,7 @@ function EndGame() {
     buttonStart.addEventListener('click', StartGame)
 }
 
-function returnBoatImages(count){
-    let result = ""
-    for(let i = 0; i<count; i++){
-        result += `<img class='lifes' src='img/boat.png'></img>`
-    }
-    return result
-}
+
 
 /** --SETUP-- **/
 
@@ -308,9 +310,9 @@ printShips('player-board', playerMap)
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
-buttonWelcome.addEventListener('click', function() {
+buttonWelcome.addEventListener('click', function () {
     document.querySelector('.canvas').style.display = 'block'
     document.querySelector('.welcome').style.display = 'none'
     StartGame()
-}) 
+})
 

@@ -116,29 +116,37 @@ table {
     }
 }
 
-h2{
+h2 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white
 }
 
-h1{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white
 }
+
 caption {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    
-}   
-#player-info,#enemy-info {
+
+}
+
+#player-info,
+#enemy-info {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.lifes{
-    width: 30px;
-    height: 30px;
+.lifes {
+    width: 40px;
+    height: 40px;
+    margin-left: 3px;
 }
+.lifes:first-child {
+    margin-left: 0;
+}
+
 #gradi {
     background: radial-gradient(rgb(70, 66, 66), rgb(27, 27, 14), rgb(34, 59, 83));
- 
 
-}   
+
+}
