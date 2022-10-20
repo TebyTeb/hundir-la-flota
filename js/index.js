@@ -323,7 +323,9 @@ const win = new Audio("./audio/Win.mp3")
 win.volume = 0.07;
 const lose = new Audio("./audio/Lose.mp3")
 lose.volume = 0.07;
-
+const ost = new Audio("./audio/ost.wav")
+ost.volume = 0.015
+ost.play()
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
@@ -333,4 +335,3 @@ buttonWelcome.addEventListener('click', function () {
     document.querySelector('.welcome').style.display = 'none'
     StartGame()
 })
-

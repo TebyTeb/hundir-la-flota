@@ -88,8 +88,26 @@ table {
 }
 
 #main-button button {
+    width: 300px;
     display: inline-block;
     margin: 1rem auto 2rem auto;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'dmg', sans-serif;
+    height: 50px;
+    font-size: 20px;
+    padding: 0 16px 0 16px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#main-button button:hover {
+    background-color: #e4e6eb;
+    color: #050505;
+    font-size: 15px;
+    transition: 0.3s;
 }
 
 #start-button button {
@@ -97,7 +115,7 @@ table {
     position: relative;
     display: inline-block;
     bottom: 0;
-    margin-top: 350px;
+    margin-top: 450px;
     background-color: #1877f2;
     border: none;
     border-radius: 6px;
@@ -123,30 +141,16 @@ table {
 }
 
 .welcome {
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     display: block;
-    background-image: url(../img/BackgroundScaled.png);
+    background-image: url(../img/portadaScaled_2.png);
     background-size: contain;
     background-repeat: no-repeat;
-    height: 493.05px;
+    width: 1000px;
 }
 
-@media (min-width: 900px) {
-
-    .welcome,
-    .canvas {
-        position: absolute;
-        left: 50%;
-        margin-left: -450px;
-        max-width: 900px;
-        max-height: 600px;
-    }
-
-    div[id$='-side'] {
-        margin: 0 2rem;
-        padding: 1rem;
-    }
-}
 
 h1 {
     font-family: 'underground-nf-regular', sans-serif;
