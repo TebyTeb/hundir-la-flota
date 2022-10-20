@@ -36,6 +36,23 @@ body {
     display: none;
 }
 
+@media (max-width: 635px) {
+    .canvas,
+    .welcome {
+        margin: auto;
+        width: 100%; 
+        height: fit-content;
+    }
+}
+@media (min-width: 900px) {
+    .canvas,
+    .welcome {
+        margin: auto;
+        width: 900px; 
+        height: 100%;
+    }
+}
+
 div[id$='-side'] {
     display: inline-block;
     padding: 0.5rem;
@@ -153,7 +170,7 @@ h1 {
     font-size: 6rem;
     font-weight: normal;
     letter-spacing: 1px;
-    color:rgb(17, 40, 141);
+    color: rgb(17, 40, 141);
 }
 
 h2 {
@@ -161,11 +178,11 @@ h2 {
     font-size: 25px;
     font-weight: bolder;
     letter-spacing: -1px;
-    color:rgb(17, 40, 141);
+    color: rgb(17, 40, 141);
 }
 
 caption {
-    color:rgb(17, 40, 141);
+    color: rgb(17, 40, 141);
     font-family: 'dmg', sans-serif;
     font-weight: bolder;
 }

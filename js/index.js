@@ -326,6 +326,7 @@ lose.volume = 0.07;
 const ost = new Audio("./audio/ost.wav")
 ost.volume = 0.015
 ost.play()
+ost.loop = true
 
 turnFlag.innerText = 'GET'
 winFlag.innerText = 'READY'
